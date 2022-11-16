@@ -1,0 +1,3 @@
+wowsunpack==0.1.7
+autopep8
+fuzzywuzzy
