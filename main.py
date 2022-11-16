@@ -7,10 +7,10 @@ GAME_PATH = 'C:\Games\World_of_Warships'
 RATIO_THRESHOLD = 60
 MAX_KEYS = 5
 
-# A struct to store the key, ratio, and value
-
 
 class Entry:
+    '''A struct to store the key, ratio, and value'''
+
     def __init__(self, key: str, ratio: int, value: str):
         self.key = key
         self.ratio = ratio
@@ -23,7 +23,7 @@ class Entry:
         return self.__str__()
 
 
-def ensure_langs():
+def ensure_langs() -> None:
     unpack = WoWsUnpack(GAME_PATH)
     if not os.path.exists('langs'):
         unpack.decodeLanguages()
@@ -40,7 +40,7 @@ def ensure_langs():
     print('langs folder is valid')
 
 
-def read_lang(lang: str):
+def read_lang(lang: str) -> dict | None:
     lang_path = os.path.join('langs', lang + '_lang.json')
     if not os.path.exists(lang_path):
         print('lang file not found: ' + lang_path)
