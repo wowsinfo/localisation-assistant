@@ -4,8 +4,8 @@ import os
 import json
 
 GAME_PATH = 'C:\Games\World_of_Warships'
-RATIO_THRESHOLD = 60
-MAX_KEYS = 5
+RATIO_THRESHOLD = 75
+MAX_KEYS = 2
 
 
 class Entry:
@@ -66,15 +66,20 @@ if __name__ == '__main__':
     # read ja, zh and zh_tw
     ja_lang = read_lang('ja')
     zh_lang = read_lang('zh')
+    zh_sg_lang = read_lang('zh_sg')
     zh_tw_lang = read_lang('zh_tw')
 
     # merge languages with their name
-    langs = list(zip([ja_lang, zh_lang, zh_tw_lang], [
-                 'Japanese', 'Simplified Chinese', 'Traditional Chinese']))
+    langs = list(zip([ja_lang, zh_lang, zh_sg_lang, zh_tw_lang], [
+                 'Japanese', 'Simplified Chinese', 'SG', 'Traditional Chinese']))
 
     while True:
         key = input('Enter key: ')
         entries = find_fuzzy_value(en_lang, key)
+        if len(entries) == 0:
+            print('No matches found')
+            continue
+
         for entry in entries:
             print(entry)
             for lang, lang_name in langs:
