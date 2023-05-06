@@ -75,12 +75,8 @@ if __name__ == '__main__':
     while True:
         key = input('Enter key: ')
         entries = find_fuzzy_value(en_lang, key)
-        print(entries)
-        for lang, lang_name in langs:
-            print(lang_name)
-            for entry in entries:
-                k = entry.key
-                # print out those keys
-                print(k, sep=': ', end=': ')
-                print(lang[k])
+        for entry in entries:
+            print(entry)
+            for lang, lang_name in langs:
+                print(f'{lang_name}: {lang[entry.key]}')
             print()
